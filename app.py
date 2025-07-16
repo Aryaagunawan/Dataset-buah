@@ -6,7 +6,8 @@ from PIL import Image
 # ------------------ Load dan Compile Model ------------------ #
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model('model_pisang.h5')
+    from keras.layers import InputLayer  # Tambahkan ini
+    model = tf.keras.models.load_model('model_pisang.h5', custom_objects={'InputLayer': InputLayer})
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
